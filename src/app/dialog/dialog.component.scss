@@ -12,14 +12,14 @@ div.mat-dialog-content {
   box-shadow:         inset 0 0 10px #00000023;
 }
 
-img {
+.wp-block-img > img {
   width: 100%;
 }
 
-video {
+.wp-block-video > video {
   width: 100%;
 }
 
-button {
+.mat-dialog-actions > button {
   color: black;
 }

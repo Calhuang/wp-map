@@ -76,7 +76,7 @@ export class MapComponent implements AfterViewInit {
       this.infowindow.setContent(`
       <div>
         <div>
-          <h3>${place.name} <span><img width="16" src="${place.icon}"/></span> <span class="rating">${place.rating}</span></h3>
+          <h3>${place.name} <span><img width="16" src="${place.icon}"/></span> <span class="rating">${place.rating || ''}</span></h3>
           <div>${place.vicinity}</div>
         </div>
       </div>
