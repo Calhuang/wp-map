@@ -6,7 +6,7 @@
         <mat-label>Address</mat-label>
         <mat-icon matPrefix>place</mat-icon>
         <input matInput placeholder="Search" #addr1 (keyup)="onKey(addr1.value)" (keyup.enter)="search()">
-        <mat-hint>Enter an address to find restaruants near it!</mat-hint>
+        <mat-hint>Enter an address to find restaurants near it!</mat-hint>
       </mat-form-field>
       <button (click)="search()">Search</button>
     </div>
