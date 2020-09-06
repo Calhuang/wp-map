@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<span>Original post: <a href="{{ data.link }}" target="_blank">{{ data.link }}</a></span>
+<mat-divider></mat-divider>
+<div mat-dialog-content [innerHTML]="data.content"></div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

@@ -1,0 +1,25 @@
+<div id="google-maps-container">
+  <div class="flex-column">
+    <h2>Find nearby restaurants:</h2>
+    <div class="search-field">
+      <mat-form-field appearance="standard">
+        <mat-label>Address</mat-label>
+        <mat-icon matPrefix>place</mat-icon>
+        <input matInput placeholder="Search" #addr1 (keyup)="onKey(addr1.value)" (keyup.enter)="search()">
+      </mat-form-field>
+      <button (click)="search()">Search</button>
+    </div>
+    <div *ngIf="loadingResults">Loading...</div>
+    <div class="result-list">
+      <div *ngFor="let place of results" class="result-list-item">
+        <div class="result-list-item-header">
+          <div class="name">{{place.name}}</div>
+          <div *ngIf="place.rating" class="rating">{{place.rating}}</div>
+        </div>
+        <div>{{place.vicinity}}</div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+  <div #mapContainer id="mapContainer"></div>
+</div>

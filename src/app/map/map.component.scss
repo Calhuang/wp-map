@@ -1,0 +1,68 @@
+@import '../../styles.scss';
+
+#google-maps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  margin-bottom: 50px;
+}
+
+.mat-divider {
+  margin-top: 10px;
+}
+
+.result-list {
+  max-height: calc(100vh - 252px);
+  overflow-y: scroll;
+}
+
+.result-list-item {
+  margin-bottom: 10px;
+}
+
+.result-list-item-header {
+  display: flex;
+
+  .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .rating {
+    border: 2px solid $blue;
+    padding: 0 2px;
+    height: 20px;
+    border-radius: 4px;
+    color: $blue;
+  }
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+
+  button {
+    background-color: $blue;
+    height: 35px;
+  }
+
+  mat-form-field {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+}
+
+#mapContainer {
+  height: 85vh;
+  width: 100%;
+}
+
+span.rating {
+  border: 1px solid $blue;
+}

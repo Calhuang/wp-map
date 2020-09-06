@@ -1,0 +1,20 @@
+@import '../../styles.scss';
+
+th {
+  font-size: 1rem;
+  color: $table-header-text;
+  background-color: $table-header-bg;
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 15px;
+}
+
+.mat-table {
+  width: auto;
+  margin: 20px;
+}
+
+tr.mat-row {
+  cursor: pointer;
+}

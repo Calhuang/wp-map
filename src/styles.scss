@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button {
+  border: none;
+  color: whitesmoke;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* colors */
+$blue: royalblue;
+
+// dialog
+$dialog-content-bg: #f1f1f1;
+
+// table
+$table-header-text: whitesmoke;
+$table-header-bg: royalblue;
