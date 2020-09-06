@@ -6,9 +6,11 @@
         <mat-label>Address</mat-label>
         <mat-icon matPrefix>place</mat-icon>
         <input matInput placeholder="Search" #addr1 (keyup)="onKey(addr1.value)" (keyup.enter)="search()">
+        <mat-hint>Enter an address to find restaruants near it!</mat-hint>
       </mat-form-field>
       <button (click)="search()">Search</button>
     </div>
+    <br/>
     <div *ngIf="loadingResults">Loading...</div>
     <div class="result-list">
       <div *ngFor="let place of results" class="result-list-item">
