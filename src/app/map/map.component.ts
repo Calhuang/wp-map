@@ -41,9 +41,9 @@ export class MapComponent implements AfterViewInit {
   }
 
   async search() {
-    this.loadingResults = true
-    const geocoder = new google.maps.Geocoder()
-    const loc = await this.codeAddress(geocoder) as loc
+    this.loadingResults = true;
+    const geocoder = new google.maps.Geocoder();
+    const loc = await this.codeAddress(geocoder) as loc;
     const userDefinedLocation = new google.maps.LatLng(loc.lat, loc.lng);
 
     const request = {
@@ -61,11 +61,9 @@ export class MapComponent implements AfterViewInit {
         }
         this.map.setCenter(results[0].geometry.location);
         this.results = results;
-        this.loadingResults = false
+        this.loadingResults = false;
       }
     }.bind(this));
-
-    
   }
 
   createMarker(place: google.maps.places.PlaceResult) {
