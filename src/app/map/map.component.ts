@@ -1,8 +1,5 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { MapService } from '../map.service';
+import { Component, AfterViewInit, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs';
 
 interface loc { 
   lat: number,
@@ -12,7 +9,8 @@ interface loc {
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
    
 export class MapComponent implements AfterViewInit {
@@ -20,20 +18,20 @@ export class MapComponent implements AfterViewInit {
   
   apiLoaded: Observable<boolean>;
   locationString: string;
-  results;
+  results = [];
   error;
   service;
   map:google.maps.Map;
   infowindow: google.maps.InfoWindow;
   loadingResults = false;
 
-  constructor()  {}
+  constructor(private cdr: ChangeDetectorRef)  {}
 
   ngAfterViewInit(): void {
     const origin = new google.maps.LatLng(34.052, -118.243);
     this.infowindow = new google.maps.InfoWindow();
     this.map = new google.maps.Map(
-      this.gmap.nativeElement, {center: origin, zoom: 15});
+      this.gmap.nativeElement, { center: origin, zoom: 15 });
   }
 
   onKey(value: string) {
@@ -42,6 +40,7 @@ export class MapComponent implements AfterViewInit {
 
   async search() {
     this.loadingResults = true;
+    this.cdr.detach();
     const geocoder = new google.maps.Geocoder();
     const loc = await this.codeAddress(geocoder) as loc;
     const userDefinedLocation = new google.maps.LatLng(loc.lat, loc.lng);
@@ -56,12 +55,14 @@ export class MapComponent implements AfterViewInit {
 
     place.nearbySearch(request, function (results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
+        this.results = [...results];
+        this.loadingResults = false;
+        this.cdr.detectChanges();
         for (let i = 0; i < results.length; i++) {
           this.createMarker(results[i]);
         }
         this.map.setCenter(results[0].geometry.location);
-        this.results = results;
-        this.loadingResults = false;
+        this.cdr.reattach();
       }
     }.bind(this));
   }
